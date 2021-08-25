@@ -1,4 +1,4 @@
-package com.example.food_recipes
+package com.example.food_recipes.viewModels
 
 import android.app.Application
 import android.content.Context
@@ -20,7 +20,7 @@ class MainViewModel @ViewModelInject constructor(
     application: Application
 ): AndroidViewModel(application){
 
-    private val recipesResponse: MutableLiveData<NetworkResult<FoodRecipe>> = MutableLiveData()
+    val recipesResponse: MutableLiveData<NetworkResult<FoodRecipe>> = MutableLiveData()
 
     fun getRecipes(queries: Map<String, String>) = viewModelScope.launch {
         getRecipesSafeCall(queries)
