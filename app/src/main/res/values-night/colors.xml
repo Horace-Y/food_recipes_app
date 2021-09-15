@@ -31,10 +31,13 @@
     // Custom CardView Style
     <color name="strokeColor">@color/mediumGray</color>
     <color name="cardBackgroundColor">@color/darker</color>
+    <color name="cardBackgroundLightColor">#106200EA</color>
     <color name="titleColor">@color/mediumGray</color>
     <color name="descColor">@color/mediumGray</color>
 
     <color name="statusBarColor">@color/black</color>
+    <color name="contextualStatusBarColor">@color/darker</color>
+    <color name="contextualActionBarColor">@color/darker</color>
     <color name="actionBarBackgroundColor">@color/darker</color>
 
     // Custom BottomNavigationView Style

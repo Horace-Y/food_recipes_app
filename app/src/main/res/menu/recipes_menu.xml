@@ -9,7 +9,6 @@
         android:iconTint="@color/white"
         android:title="@string/search"
         app:actionViewClass="androidx.appcompat.widget.SearchView"
-        app:showAsAction="ifRoom"
-        tools:targetApi="o" />
+        app:showAsAction="ifRoom"/>
 
 </menu>

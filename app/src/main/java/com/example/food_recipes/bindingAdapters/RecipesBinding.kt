@@ -1,11 +1,10 @@
 package com.example.food_recipes.bindingAdapters
 
 import android.view.View
-import android.widget.AutoCompleteTextView
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
-import com.example.food_recipes.data.database.RecipesEntity
+import com.example.food_recipes.data.database.entities.RecipesEntity
 import com.example.food_recipes.models.FoodRecipe
 import com.example.food_recipes.util.NetworkResult
 
