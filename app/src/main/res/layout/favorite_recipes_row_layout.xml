@@ -80,46 +80,45 @@
                     android:id="@+id/favorite_heart_imageView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
                     android:layout_marginTop="12dp"
                     android:layout_marginBottom="36dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@+id/favorite_heart_textView"
-                    app:layout_constraintStart_toStartOf="@+id/favorite_heart_textView"
+                    app:layout_constraintStart_toStartOf="@+id/favorite_desc_textView"
                     app:layout_constraintTop_toBottomOf="@+id/favorite_desc_textView"
                     app:srcCompat="@drawable/ic_heart"
                     app:tint="@color/red" />
 
                 <TextView
                     android:id="@+id/favorite_heart_textView"
-                    setNumberOfLikes="@{favoritesEntity.result.aggregateLikes}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="100"
+                    android:text="@{String.valueOf(favoritesEntity.result.aggregateLikes)}"
                     android:textAlignment="center"
                     android:textColor="@color/red"
-                    app:layout_constraintStart_toStartOf="@+id/favorite_desc_textView"
+                    app:layout_constraintEnd_toEndOf="@+id/favorite_heart_imageView"
+                    app:layout_constraintStart_toStartOf="@+id/favorite_heart_imageView"
                     app:layout_constraintTop_toBottomOf="@+id/favorite_heart_imageView" />
 
                 <ImageView
                     android:id="@+id/favorite_clock_imageView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="@+id/favorite_clock_textView"
-                    app:layout_constraintStart_toStartOf="@+id/favorite_clock_textView"
+                    app:layout_constraintEnd_toStartOf="@+id/favorite_leaf_imageView"
+                    app:layout_constraintStart_toEndOf="@+id/favorite_heart_imageView"
                     app:layout_constraintTop_toTopOf="@+id/favorite_heart_imageView"
                     app:srcCompat="@drawable/ic_clock"
                     app:tint="@color/yellow" />
 
                 <TextView
                     android:id="@+id/favorite_clock_textView"
-                    setNumberOfMinutes="@{favoritesEntity.result.readyInMinutes}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:text="100"
+                    android:text="@{String.valueOf(favoritesEntity.result.readyInMinutes)}"
                     android:textAlignment="center"
                     android:textColor="@color/yellow"
-                    app:layout_constraintStart_toEndOf="@+id/favorite_heart_textView"
+                    app:layout_constraintEnd_toEndOf="@+id/favorite_clock_imageView"
+                    app:layout_constraintStart_toStartOf="@+id/favorite_clock_imageView"
                     app:layout_constraintTop_toBottomOf="@+id/favorite_clock_imageView" />
 
                 <ImageView
@@ -137,10 +136,10 @@
                     applyVeganColor="@{favoritesEntity.result.vegan}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:text="Vegan"
+                    android:layout_marginEnd="8dp"
+                    android:text="@string/vegan"
                     android:textAlignment="center"
-                    app:layout_constraintStart_toEndOf="@+id/favorite_clock_textView"
+                    app:layout_constraintEnd_toEndOf="@+id/favorite_desc_textView"
                     app:layout_constraintTop_toBottomOf="@+id/favorite_leaf_imageView" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -1,8 +1,7 @@
 package com.example.food_recipes.bindingAdapters
 
 import android.view.View
-import android.widget.ImageView
-import android.widget.TextView
+import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.food_recipes.adapters.FavoriteRecipesAdapter
@@ -12,34 +11,18 @@ class FavoriteRecipesBinding {
 
     companion object {
 
-        @BindingAdapter("viewVisibility", "setData", requireAll = false)
+        @BindingAdapter("setVisibility", "setData", requireAll = false)
         @JvmStatic
-        fun setDataAndViewVisibility(view: View, favoritesEntities: List<FavoritesEntity>?, mAdapter: FavoriteRecipesAdapter?){
-            if (favoritesEntities.isNullOrEmpty()){
-                when(view){
-                    is ImageView -> {
-                        view.visibility = View.VISIBLE
-                    }
-                    is TextView -> {
-                        view.visibility = View.VISIBLE
-                    }
-                    is RecyclerView -> {
-                        view.visibility = View.INVISIBLE
+        fun setVisibility(view: View, favoritesEntity: List<FavoritesEntity>?, mAdapter: FavoriteRecipesAdapter?) {
+            when (view) {
+                is RecyclerView -> {
+                    val hasData = !favoritesEntity.isNullOrEmpty()
+                    view.isVisible = hasData
+                    if(hasData) {
+                        favoritesEntity?.let { mAdapter?.setData(it) }
                     }
                 }
-            } else{
-                when(view){
-                    is ImageView -> {
-                        view.visibility = View.INVISIBLE
-                    }
-                    is TextView -> {
-                        view.visibility = View.INVISIBLE
-                    }
-                    is RecyclerView -> {
-                        view.visibility = View.VISIBLE
-                        mAdapter?.setData(favoritesEntities)
-                    }
-                }
+                else -> view.isVisible = favoritesEntity.isNullOrEmpty()
             }
         }
     }

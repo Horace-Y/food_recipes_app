@@ -46,7 +46,7 @@ class RecipesFragment : Fragment(), SearchView.OnQueryTextListener {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding =  FragmentRecipesBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
@@ -60,7 +60,8 @@ class RecipesFragment : Fragment(), SearchView.OnQueryTextListener {
             recipesViewModel.backOnline = it
         })
 
-        lifecycleScope.launch {
+        // bug fixed for internet connection when disconnect/connect internet while not in recipes fragment
+        lifecycleScope.launchWhenStarted {
             networkListener = NetworkListener()
             networkListener.checkNetworkAvailability(requireContext())
                 .collect{ status ->
@@ -129,6 +130,7 @@ class RecipesFragment : Fragment(), SearchView.OnQueryTextListener {
                 is NetworkResult.Success -> {
                     hideShimmerEffect()
                     response.data?.let { mAdapter.setData(it) }
+                    recipesViewModel.saveMealAndDietType()
                 }
                 is NetworkResult.Error -> {
                     hideShimmerEffect()
@@ -183,15 +185,17 @@ class RecipesFragment : Fragment(), SearchView.OnQueryTextListener {
     }
 
     private fun showShimmerEffect(){
-        binding.recyclerView.showShimmer()
+        binding.shimmerFrameLayout.startShimmer()
+        binding.recyclerView.visibility = View.GONE
     }
 
     private fun hideShimmerEffect(){
-        binding.recyclerView.hideShimmer()
+        binding.shimmerFrameLayout.stopShimmer()
+        binding.recyclerView.visibility = View.VISIBLE
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
+        super.onDestroyView()
         _binding = null
     }
 

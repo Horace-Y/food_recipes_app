@@ -12,7 +12,6 @@ import com.example.food_recipes.databinding.FragmentFavoriteRecipesBinding
 import com.example.food_recipes.viewModels.MainViewModel
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_favorite_recipes.view.*
 
 @AndroidEntryPoint
 class FavoriteRecipesFragment : Fragment() {
@@ -25,7 +24,7 @@ class FavoriteRecipesFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentFavoriteRecipesBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
@@ -60,8 +59,8 @@ class FavoriteRecipesFragment : Fragment() {
         Snackbar.make(binding.root, "All recipes removed.", Snackbar.LENGTH_SHORT).setAction("Okay"){}.show()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
+        super.onDestroyView()
         _binding = null
         // bug fixed for navigate during multiselect
         mAdapter.closeContextualActionMode()
