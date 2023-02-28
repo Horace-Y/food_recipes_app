@@ -88,10 +88,10 @@ class DetailsActivity : AppCompatActivity() {
     }
 
     private fun checkSavedRecipes(menuItem: MenuItem) {
-        mainViewModel.readFavoriteRecipes.observe(this, { favoritesEntity ->
-            try{
-                for(savedRecipe in favoritesEntity) {
-                    if (savedRecipe.result.id == args.result.id){
+        mainViewModel.readFavoriteRecipes.observe(this) { favoritesEntity ->
+            try {
+                for (savedRecipe in favoritesEntity) {
+                    if (savedRecipe.result.id == args.result.id) {
                         changeMenuItemColor(menuItem, R.color.yellow)
                         savedRecipeId = savedRecipe.id
                         recipeSaved = true
@@ -100,7 +100,7 @@ class DetailsActivity : AppCompatActivity() {
             } catch (e: Exception) {
                 Log.d("DetailsActivity", e.message.toString())
             }
-        })
+        }
     }
 
     private fun saveToFavorites(item: MenuItem) {
